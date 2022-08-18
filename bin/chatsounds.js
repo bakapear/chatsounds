@@ -100,11 +100,13 @@ function doAction (match) {
 async function main (url) {
   readline.createInterface({ input: process.stdin, output: process.stdout })
 
-  master = await util.fetch(url).text().catch(() => null)
+  master = await util.fetch(url).text().catch(() => {
+    throw Error('Could not fetch master file @ ' + url)
+  })
 
-  setTitle(`chatsounds ${master ? '' : '(local)'}`.trim())
+  // setTitle(`chatsounds ${master ? '' : '(local)'}`.trim())
 
-  cs = new ChatSounds('../data/config.json', master ? master.split('\n') : '../data/master.list')
+  cs = new ChatSounds('../data/config.json', master /* ? master.split('\n') : '../data/master.list' */)
 
   process.on('exit', () => {
     players.forEach(x => x.kill())
