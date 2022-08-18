@@ -106,7 +106,7 @@ async function main (url) {
 
   // setTitle(`chatsounds ${master ? '' : '(local)'}`.trim())
 
-  cs = new ChatSounds('../data/config.json', master /* ? master.split('\n') : '../data/master.list' */)
+  cs = new ChatSounds('../data/config.json', master.split('\n') /* '../data/master.list' */)
 
   process.on('exit', () => {
     players.forEach(x => x.kill())
