@@ -1,0 +1,40 @@
+{
+    "chatsounds": {
+        "sound/chatsounds/autoadd": "Metastruct/garrysmod-chatsounds",
+        "sounds/chatsounds": [
+            "PAC3-Server/chatsounds",
+            "Sandboxen/chatsounds"
+        ],
+        "sounds": "NotAwesome2/chatsounds"
+    },
+    "gamesounds": {
+        "sound": [
+            "SourceSounds/bshift",
+            "SourceSounds/csgo",
+            "SourceSounds/cstrike",
+            "SourceSounds/czero",
+            "SourceSounds/dod",
+            "SourceSounds/dods",
+            "SourceSounds/ep2",
+            "SourceSounds/episodic",
+            "SourceSounds/garrysmod",
+            "SourceSounds/hl1",
+            "SourceSounds/hl2",
+            "SourceSounds/hl2dm",
+            "SourceSounds/left4dead",
+            "SourceSounds/left4dead2",
+            "SourceSounds/lostcoast",
+            "SourceSounds/misc",
+            "SourceSounds/portal",
+            "SourceSounds/portal2",
+            "SourceSounds/tf",
+            "SourceSounds/tfc",
+            "SourceSounds/zps"
+        ]
+    },
+    "luamaps": {
+        "repo": "Metastruct/garrysmod-chatsounds",
+        "path": "lua/chatsounds/lists_send",
+        "tree": "fdf1983b54900712cd4ac15b1934137afa346ee1"
+    }
+}
