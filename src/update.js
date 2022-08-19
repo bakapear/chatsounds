@@ -222,6 +222,6 @@ async function update (cfg, table, dir, output, game = true) {
   for (let p in out) fs.existsSync(out[p]) && fs.unlinkSync(out[p])
 }
 
-let cfg = require('../config.json')
+let cfg = require('../data/config.json')
 let TABLE = [cfg.chatsounds, cfg.gamesounds].map(x => Object.values(x)).flat(2)
 update(cfg, TABLE, '../data', '../data/master.list')
