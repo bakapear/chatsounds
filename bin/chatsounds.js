@@ -1,6 +1,11 @@
 #! /usr/bin/env node
 process.chdir(__dirname)
 
+let util = require('../src/util.js')
+let child = require('child_process')
+let readline = require('readline')
+let ChatSounds = require('../src')
+
 setTitle('chatsounds')
 clearLines()
 
@@ -16,11 +21,6 @@ let CODES = {
 
 let CURSOR = '█'
 
-let util = require('../src/util.js')
-let child = require('child_process')
-let readline = require('readline')
-let ChatSounds = require('../src')
-
 child.exec('ffplay -version').stderr.on('data', () => { throw Error('ffplay not found!') })
 
 let players = []
@@ -33,11 +33,11 @@ function setTitle (title) {
 
 function clearLines () {
   for (let i = 0; i < process.stdout.rows; i++) {
-    process.stdout.moveCursor(0, -1)
-    process.stdout.clearLine()
+    readline.moveCursor(process.stdout, 0, -1)
+    readline.clearLine(process.stdout)
   }
-  process.stdout.cursorTo(0, process.stdout.rows - 1)
-  process.stdout.clearLine()
+  readline.cursorTo(process.stdout, 0, process.stdout.rows - 1)
+  readline.clearLine(process.stdout)
 }
 
 function showMatches (input, size, pointer) {
@@ -53,8 +53,8 @@ function showMatches (input, size, pointer) {
   let current = null
 
   for (let i = 0; i < matches.length; i++) {
-    process.stdout.cursorTo(0)
-    process.stdout.moveCursor(0, -1)
+    readline.cursorTo(process.stdout, 0)
+    readline.moveCursor(process.stdout, 0, -1)
 
     let txt = matches[i].match
     txt = txt.slice(0, process.stdout.columns)
@@ -68,7 +68,7 @@ function showMatches (input, size, pointer) {
     process.stdout.write(txt)
   }
 
-  process.stdout.cursorTo(0, process.stdout.rows - 1)
+  readline.cursorTo(process.stdout, 0, process.stdout.rows - 1)
 
   input = CODES.blue + input
   input = input.replaceAll('#', CODES.red + '#')
@@ -76,7 +76,7 @@ function showMatches (input, size, pointer) {
 
   process.stdout.write(input + CURSOR)
 
-  process.stdout.cursorTo(process.stdout.columns)
+  readline.cursorTo(process.stdout, process.stdout.columns)
 
   return current
 }
