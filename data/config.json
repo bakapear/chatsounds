@@ -3,7 +3,8 @@
         "sound/chatsounds/autoadd": "Metastruct/garrysmod-chatsounds",
         "sounds/chatsounds": [
             "PAC3-Server/chatsounds",
-            "Sandboxen/chatsounds"
+            "Sandboxen/chatsounds",
+            "MeteorTheLizard/Chatsounds"
         ],
         "sounds": "NotAwesome2/chatsounds"
     },
