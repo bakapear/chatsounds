@@ -97,16 +97,20 @@ function doAction (match) {
   play(sound)
 }
 
-async function main (url) {
+async function main (cfg) {
   readline.createInterface({ input: process.stdin, output: process.stdout })
 
-  master = await util.fetch(url).text().catch(() => {
-    throw Error('Could not fetch master file @ ' + url)
+  master = await util.fetch(cfg.master).text().catch(() => {
+    throw Error('Could not fetch master file @ ' + cfg.master)
+  })
+
+  let config = await util.fetch(cfg.config).json().catch(() => {
+    throw Error('Could not fetch config file @ ' + cfg.config)
   })
 
   // setTitle(`chatsounds ${master ? '' : '(local)'}`.trim())
 
-  cs = new ChatSounds('../data/config.json', master.split('\n') /* '../data/master.list' */)
+  cs = new ChatSounds(config /* '../data/config.json' */, master.split('\n') /* '../data/master.list' */)
 
   process.on('exit', () => {
     players.forEach(x => x.kill())
@@ -144,4 +148,7 @@ async function main (url) {
   })
 }
 
-main('https://raw.githubusercontent.com/bakapear/chatsounds/main/data/master.list')
+main({
+  config: 'https://raw.githubusercontent.com/bakapear/chatsounds/main/data/config.json',
+  master: 'https://raw.githubusercontent.com/bakapear/chatsounds/main/data/master.list'
+})

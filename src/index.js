@@ -3,7 +3,7 @@ let github = require('./github')
 
 class ChatSounds {
   constructor (config, master) {
-    this.cfg = require(config)
+    this.cfg = typeof config === 'object' ? config : require(config)
 
     this.master = Array.isArray(master) ? master : fs.readFileSync(master, 'utf-8').split('\n')
 
